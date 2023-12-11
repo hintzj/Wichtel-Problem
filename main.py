@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 global group_size_max
-group_size_max = 200
+group_size_max = 50000
 
 def create_array(length):
     array = []
@@ -31,16 +31,17 @@ def test_series(length):
     passed = 0
     failed = 0
 
-    for i in range(10000):
+    for i in range(100):
         if run_one_test(length):
             passed += 1
         else:
             failed += 1
-    
-    #print("Passed: ", passed)
-    #print("Failed: ", failed)
-    #print("Total: ", passed + failed)
-    #print("Percentage: ", passed / (passed + failed))
+    print("Length: ", length)
+    print("Passed: ", passed)
+    print("Failed: ", failed)
+    print("Total: ", passed + failed)
+    print("Percentage: ", passed / (passed + failed))
+    print("/n/n/")
 
     return passed / (passed + failed)
 
@@ -68,6 +69,7 @@ def plot_results(dict):
     plt.ylabel('Wahrscheinlichkeit eigenen Namen ziehen [p]')
     plt.text(group_size_max/5, 0.1, "Durchschnitt: " + str(round(np.average(list(dict.values())), 3)), fontsize=16)
     plt.show()
+    
 
 def main():
     global group_size_max
